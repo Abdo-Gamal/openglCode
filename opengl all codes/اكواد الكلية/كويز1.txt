@@ -1,0 +1,98 @@
+
+#include<gl/glut.h>
+#include<cmath>
+
+GLint  width;
+GLint hight;
+int cnt = 0;
+void RandscenT(void) {
+
+
+	glColor3f(1.0f, 0.0f, 1.0f);
+
+	glLineWidth(5);
+	glBegin(GL_LINES);
+	glVertex2f(30.0f, 20.0f);
+	glVertex2f(80.0f, 20.0f);
+
+	glEnd();
+	glColor3f(0.0f, 1.0f, 1.0f);
+	glBegin(GL_LINES);
+	glVertex2f(55.0f, 19.0f);
+	glVertex2f(55.0f, -80.0f);
+	glEnd();
+}
+void RandscenM(void) {
+
+
+
+	glColor3f(1.0f, 0.0f, 1.0f);
+	glBegin(GL_LINE_LOOP);
+	glVertex2f(-20.0f, 0.0f);
+	glVertex2f(-50.0f, 40.0f);
+	glVertex2f(-90.0f, 0.0f);
+	glVertex2f(-50.0f, -40.0f);
+
+	glEnd();
+
+}
+void Randscen(void) {
+
+	glClear(GL_COLOR_BUFFER_BIT);
+	
+	if(cnt%2)
+	glViewport(width / 2, 0, width / 2, hight);
+	else 
+		glViewport(0, 0, width / 2, hight);
+
+	RandscenT();
+
+	if (cnt % 2)
+	glViewport(0, 0, width / 2, hight);
+	else
+		glViewport(width / 2, 0, width / 2, hight);
+
+	RandscenM();
+
+	cnt++;
+
+	glutSwapBuffers();
+
+}
+void resize(GLsizei w, GLsizei h) {
+
+	width = w;
+	hight = h;
+
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	glOrtho(-100.0f, 100.0f, -100.0f, 100.0f, -1.0f, 1.0f);
+
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
+
+}
+void setRC() {
+	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+
+
+}
+void time(int x) {
+
+	glutPostRedisplay();
+	glutTimerFunc(1000, time, 1);
+
+}
+int main(int argc, char* argv[]) {
+
+	glutInit(&argc, argv);
+	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA);
+	//glutInitWindowSize(500, 500);
+	glutCreateWindow("TEST");
+	glutTimerFunc(20, time,1);
+	glutDisplayFunc(Randscen);
+	glutReshapeFunc(resize);
+
+	setRC();
+	glutMainLoop();
+}

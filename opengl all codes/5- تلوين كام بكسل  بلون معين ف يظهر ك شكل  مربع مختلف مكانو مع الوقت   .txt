@@ -1,0 +1,48 @@
+﻿
+#include <GL/glut.h>
+#include<stdlib.h>      //  عشان  دالة  rand
+#include<time.h>       //  شعان  srand 
+void RenderScene(void) {
+
+	glClear(GL_COLOR_BUFFER_BIT);   /// set colr  for grawend
+	glColor3f(1, 0, 0); //   color  for  pixal
+
+	
+	glPointSize(10);
+	int x, y;
+	srand(time(NULL));   //  دة عشان  مع الوقت يطلعى  رقم مختلف   من  غيرها ال  rand  مش  هتشتغل 
+	x = (rand() % 200) + 1;
+	y= (rand() % 200) + 1;
+
+	glBegin(GL_POINTS);
+	glVertex2f(x, y); 
+
+	glEnd();
+
+
+	glFlush(); 
+}
+void setRC() {
+
+	glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+}
+
+int main(int argc, char* argv[]) {
+
+	glutInit(&argc, argv);
+	glutInitWindowPosition(100, 100);
+	glutInitWindowSize(600, 600);
+	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGBA);
+	glutCreateWindow("Simple11");
+	gluOrtho2D(0, 200, 0, 200);
+	setRC();
+	glutDisplayFunc(RenderScene);
+
+
+
+
+
+	glutMainLoop();
+	return 0;
+
+}

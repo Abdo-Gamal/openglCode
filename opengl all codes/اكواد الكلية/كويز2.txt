@@ -1,0 +1,44 @@
+
+#include<gl/glut.h>
+#include<cmath>
+
+const double PI = 3.14;
+int cnt = 1;
+void fun() {
+
+	glClear(GL_COLOR_BUFFER_BIT);
+	glColor3f(0.0f, 1.0f, 0.0f);
+
+	for (double a = 0.0; a < (2 * PI); a += PI/6.0f) {
+
+		double x =  sin(a);
+		double y =  cos(a);
+
+	     glBegin(GL_LINES);
+		
+
+			glVertex2f(50*x,50* y);
+			glVertex2f(x*45, y*45);
+
+		
+
+	}
+	glEnd();
+
+	glutSwapBuffers();
+}
+
+
+int main(int argc, char* argv[]) {
+
+	glutInit(&argc, argv);
+	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA);
+	glutCreateWindow("test");
+	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	glOrtho(-100.0f, 100.0f, -100.0f, 100.0f, -1.0f, 1.0f);
+	glutDisplayFunc(fun);
+	glutMainLoop();
+	
+}

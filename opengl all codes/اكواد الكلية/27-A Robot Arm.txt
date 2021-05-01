@@ -1,0 +1,49 @@
+
+#include <GL/glut.h>
+
+double shoulder = 20, elbow=50;
+void RenderScene(void) {
+   
+      glClear(GL_COLOR_BUFFER_BIT);
+        glPushMatrix();
+        glTranslatef(-1.0, 0.0, 0.0);
+        glRotatef((GLfloat)shoulder, 0.0, 0.0, 1.0);
+        glTranslatef(1.0, 0.0, 0.0);
+        glPushMatrix();
+        glScalef(2.0, 0.4, 1.0);
+        glutWireCube(1.0);
+        glPopMatrix();
+
+        glTranslatef(1.0, 0.0, 0.0);
+        glRotatef((GLfloat)elbow, 0.0, 0.0, 1.0);
+        glTranslatef(1.0, 0.0, 0.0);
+        glPushMatrix();
+        glScalef(2.0, 0.4, 1.0);
+        glutWireCube(1.0);
+        glPopMatrix();
+
+        glPopMatrix();
+        glutSwapBuffers();
+    
+
+
+
+}
+
+int main(int argc, char* argv[]) {
+
+	glutInit(&argc, argv);
+	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGBA);
+	glutCreateWindow("Simple11");
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    glOrtho(-10.0, 10.0, -10.0, 10.0, -10.0, 10.0);
+    glRotatef(30.0, 1.0, 0.0, 0.0);     ///////////////x axis
+    glMatrixMode(GL_MODELVIEW);
+
+	glClearColor(0.0f, 0.0f, 1.0f, 1.0f);
+	glutDisplayFunc(RenderScene);
+	glutMainLoop();
+	return 0;
+
+}

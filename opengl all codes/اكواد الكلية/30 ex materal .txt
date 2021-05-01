@@ -1,0 +1,20 @@
+Default Values for pname Parameter of glMaterial*() 
+Parameter Name	Default Value	Meaning
+GL_AMBIENT	(0.2, 0.2, 0.2, 1.0)	ambient color
+GL_DIFFUSE	(0.8, 0.8, 0.8, 1.0)	diffuse color
+GL_AMBIENT_AND_DIFFUSE	ambient and diffuse color 
+GL_SPECULAR	(0.0, 0.0, 0.0, 1.0)	specular color
+GL_SHININESS	0.0	specular exponent
+GL_EMISSION	(0.0, 0.0, 0.0, 1.0)	emissive color
+==========================================================================
+GLfloat no_mat[ ] = { 0.0, 0.0, 0.0, 1.0 }; 
+GLfloat mat_diffuse[ ] = { 0.1, 0.5, 0.8, 1.0 }; 
+ GLfloat no_shininess[ ] = { 0.0 }; 
+glMaterialfv(GL_FRONT, GL_AMBIENT, no_mat); 
+glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_diffuse); 
+glMaterialfv(GL_FRONT, GL_SPECULAR, no_mat); 
+glMaterialfv(GL_FRONT, GL_SHININESS, no_shininess); 
+glMaterialfv(GL_FRONT, GL_EMISSION, no_mat); 
+
+
+==========================================================================

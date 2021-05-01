@@ -1,0 +1,46 @@
+﻿
+#include <GL/glut.h>
+
+void RenderScene(void) {
+
+	glClear(GL_COLOR_BUFFER_BIT);   /// set colr  for grawend
+	glColor3f(1, 0, 0); //   color  for  pixal
+
+	
+	
+	
+	glLineWidth(5);   //  لازم  فوق ال   glBegin
+	glBegin(GL_LINE_STRIP);   // دة   هيمشى على النقص الى انت بتحددها //  بتاخد عدد نقط = عدد الرؤس+1
+	glVertex2f(10, 10);
+	glVertex2f(100, 100);
+
+	glVertex2f(100, 10);
+	glVertex2f(10, 10);
+
+
+	glEnd();
+
+	glFlush(); 
+}
+void setRC() {
+
+	glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+}
+
+int main(int argc, char* argv[]) {
+
+	glutInit(&argc, argv);
+	glutInitWindowPosition(100, 100);
+	glutInitWindowSize(600, 600);
+	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGBA);
+	glutCreateWindow("Simple11");
+	gluOrtho2D(0, 200, 0, 200);// after the ceate
+	setRC();
+	glutDisplayFunc(RenderScene);
+
+
+
+	glutMainLoop();
+	return 0;
+
+}

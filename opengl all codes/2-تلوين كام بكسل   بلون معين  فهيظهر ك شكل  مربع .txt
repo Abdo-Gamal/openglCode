@@ -1,0 +1,40 @@
+﻿
+#include <GL/glut.h>
+
+void RenderScene(void) {
+
+	glClear(GL_COLOR_BUFFER_BIT);   /// set colr  for grawend
+	glColor3f(1, 0, 0); //   color  for  pixal
+
+	glPointSize(10);            // لازم مكانو هنا
+	glBegin(GL_POINTS);
+	glVertex2f(100, 100); 
+	glEnd();                // لو  شلتها الكود   هيشتغل؟؟لا 
+
+
+	glFlush(); 
+}
+void setRC() {
+
+	glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+}
+
+int main(int argc, char* argv[]) {
+
+	glutInit(&argc, argv);
+	glutInitWindowPosition(100, 100);  // لازم مكانو هنا  
+	glutInitWindowSize(600, 600);         // لازم مكانو هنا
+	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGBA);
+	glutCreateWindow("Simple11");
+	gluOrtho2D(4, 200, 4, 200);       //  دة الى بيحدد الرسمة هتترسم من كام لكام 
+	glutDisplayFunc(RenderScene);
+	setRC();
+
+
+
+
+
+	glutMainLoop();
+	return 0;
+
+}

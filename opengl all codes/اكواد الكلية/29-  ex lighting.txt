@@ -1,0 +1,35 @@
+Parameter 	NameDefault 	ValueMeaning
+GL_AMBIENT	 (0.0, 0.0, 0.0, 1.0)	ambient RGBA intensity
+GL_DIFFUSE	 (1.0, 1.0, 1.0, 1.0)	diffuse RGBA intensity 
+GL_SPECULAR (1.0, 1.0, 1.0, 1.0)		specular RGBA intensity 
+GL_POSITION	 (0.0, 0.0, 1.0, 0.0)	(x, y, z, w) position 
+GL_SPOT_DIRECTION	(0.0, 0.0, -1.0)	(x, y, z) direction
+GL_SPOT_EXPONENT		0.0	spotlight exponent
+GL_SPOT_CUTOFF	180.0		spotlight cutoff angle
+GL_CONSTANT_ATTENUATION 1.0	constant attenuation 
+GL_LINEAR_ATTENUATION	0.0	linear attenuation 
+GL_QUADRATIC_ATTENUATION 0.0	quadratic attenuation 
+
+The default values listed for GL_DIFFUSE and GL_SPECULAR apply only to GL_LIGHT0. For other lights, the default value is (0.0, 0.0, 0.0, 1.0) for both GL_DIFFUSE and GL_SPECULAR. 
+=======================================================================
+GLfloat light1_ambient[] = { 0.2, 0.2, 0.2, 1.0 };
+GLfloat light1_diffuse[] = { 1.0, 1.0, 1.0, 1.0 };
+GLfloat light1_specular[] = { 1.0, 1.0, 1.0, 1.0 };
+GLfloat light1_position[] = { -2.0, 2.0, 1.0, 1.0 };
+GLfloat spot_direction[] = { -1.0, -1.0, 0.0 };
+
+glLightfv(GL_LIGHT1, GL_AMBIENT, light1_ambient);
+glLightfv(GL_LIGHT1, GL_DIFFUSE, light1_diffuse);
+glLightfv(GL_LIGHT1, GL_SPECULAR, light1_specular);
+glLightfv(GL_LIGHT1, GL_POSITION, light1_position);
+glLightf(GL_LIGHT1, GL_CONSTANT_ATTENUATION, 1.5);
+glLightf(GL_LIGHT1, GL_LINEAR_ATTENUATION, 0.5);
+glLightf(GL_LIGHT1, GL_QUADRATIC_ATTENUATION, 0.2);
+
+glLightf(GL_LIGHT1, GL_SPOT_CUTOFF, 45.0);
+glLightfv(GL_LIGHT1, GL_SPOT_DIRECTION, spot_direction);
+glLightf(GL_LIGHT1, GL_SPOT_EXPONENT, 2.0);
+
+glEnable(GL_LIGHT1);
+
+

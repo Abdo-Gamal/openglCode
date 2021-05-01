@@ -1,0 +1,60 @@
+
+#include <GL/glut.h>
+
+
+
+class GLFrame {
+protected:
+	double vOrigin[3];
+	double vUp[3];
+	double vForward[3];
+public:
+	
+	void MoveForward(float fDelta);
+
+	void MoveUp(float fDelta);
+
+	void MoveRight(float fDelta);
+
+};
+void GLFrame::MoveForward(float fDelta) {
+	// Move along direction of front direction
+	vOrigin[0] += vForward[0] * fDelta;
+	vOrigin[1] += vForward[1] * fDelta;
+	vOrigin[2] += vForward[2] * fDelta;
+}
+
+void GLFrame::MoveUp(float fDelta) {
+	// Move along direction of up direction
+	vOrigin[0] += vUp[0] * fDelta;
+	vOrigin[1] += vUp[1] * fDelta;
+	vOrigin[2] += vUp[2] * fDelta;
+}
+
+// Move along X axis
+void GLFrame::MoveRight(float fDelta) {
+	// Move along direction of right vector
+	//M3DVector3f vCross;
+	//m3dCrossProduct(vCross, vUp, vForward);
+
+	//vOrigin[0] += vCross[0] * fDelta;
+	//vOrigin[1] += vCross[1] * fDelta;
+	//vOrigin[2] += vCross[2] * fDelta;
+}
+
+void RenderScene(void) {
+	glClear(GL_COLOR_BUFFER_BIT);
+	glFlush(); // Flush drawing commands
+}
+
+int main(int argc, char* argv[]) {
+
+	glutInit(&argc, argv);
+	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGBA);
+	glutCreateWindow("Simple11");
+	glClearColor(0.0f, 0.0f, 1.0f, 1.0f);
+	glutDisplayFunc(RenderScene);
+	glutMainLoop();
+	return 0;
+
+}

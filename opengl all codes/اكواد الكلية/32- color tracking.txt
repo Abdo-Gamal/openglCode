@@ -1,0 +1,4 @@
+// Enable color tracking
+glEnable(GL_COLOR_MATERIAL);
+// Front material ambient and diffuse colors track glColor
+glColorMaterial(GL_FRONT,GL_AMBIENT_AND_DIFFUSE);

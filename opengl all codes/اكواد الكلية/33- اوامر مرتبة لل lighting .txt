@@ -1,0 +1,46 @@
+void init(void) {
+
+  
+
+    GLfloat light1_position[] = { 1.0, 1.0, 1.0, 1.0 };
+    GLfloat light1_ambient[] = { 1.0, 1.0, 0.0, 1.0 };
+    GLfloat light1_diffuse[] = { 0.3, 0.4, 0.4, 1.0 };
+    GLfloat light1_specular[] = { .7, 0.8, 0.9, 1.0 };
+
+    GLfloat Mat1_ambient[] = { 1.0, 1.0, 0.0, 1.0 };
+    GLfloat Mat1_diffuse[] = { 0.03, 0.03, 0.03, 1.0 };
+    GLfloat Mat1_specular[] = { .4, 0.4, 0.4, 1.0 };
+    GLfloat Mat1_emission[] = { .02, 0.02, 0.03, 1.0 };
+    GLfloat mat_shininess[] = { 200.0 };
+
+
+
+    glLightfv(GL_LIGHT1, GL_POSITION, light1_position);
+    glLightfv(GL_LIGHT1, GL_AMBIENT, light1_ambient);
+    glLightfv(GL_LIGHT1, GL_DIFFUSE, light1_diffuse);
+    glLightfv(GL_LIGHT1, GL_SPECULAR, light1_specular);
+    glEnable(GL_LIGHT1);
+    glEnable(GL_LIGHTING);
+
+
+    glMaterialfv(GL_FRONT, GL_AMBIENT, Mat1_ambient);
+    glMaterialfv(GL_FRONT, GL_DIFFUSE, Mat1_diffuse);
+    glMaterialfv(GL_FRONT, GL_SPECULAR, Mat1_specular);
+    glMaterialfv(GL_FRONT, GL_EMISSION, Mat1_emission);
+    glMaterialfv(GL_FRONT, GL_SHININESS, mat_shininess);
+    glEnable(GL_COLOR_MATERIAL);
+    glColorMaterial(GL_FRONT, GL_AMBIENT_AND_DIFFUSE);
+
+
+
+    GLfloat spot_direction[] = { -8.0, -4.0, 0.0 };
+    glLightf(GL_LIGHT1, GL_CONSTANT_ATTENUATION, 0.05);
+    glLightf(GL_LIGHT1, GL_LINEAR_ATTENUATION, 0.05);
+    glLightf(GL_LIGHT1, GL_QUADRATIC_ATTENUATION, 0.02);
+
+    glLightf(GL_LIGHT1, GL_SPOT_CUTOFF, 45.0);
+    glLightfv(GL_LIGHT1, GL_SPOT_DIRECTION, spot_direction);
+    glLightf(GL_LIGHT1, GL_SPOT_EXPONENT, 1.2);
+   
+  
+}

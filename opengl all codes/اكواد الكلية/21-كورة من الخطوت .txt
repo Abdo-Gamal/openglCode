@@ -1,0 +1,87 @@
+#include <GL/glut.h>
+#include <math.h>
+
+
+
+
+float angle=1.0;
+void drawcube(void)
+{
+	float r, z, sin_theta, cos_theta,x,y;
+	glClear(GL_COLOR_BUFFER_BIT);
+
+glColor3f(1.0, 1.0, 1.0);
+glMatrixMode(GL_MODELVIEW);
+
+glRotatef(angle, 0.0, 1.0, 0.0);   /// y axis
+
+glBegin(GL_LINE_STRIP);
+r = 50.0f;
+float angle1 = 0.0f;
+for (z = -r; z < r; z += .1f) {
+	//x = r cos(theta) cos(phi)
+	//y = r cos(theta) sin(phi)
+	//z = r sin(theta) 
+
+	sin_theta = z / r;
+	cos_theta = sqrt(1 - sin_theta * sin_theta);
+	//C runtime functions sin() and cos() accept angle values measured in radians
+	x = r * sin(angle1) * cos_theta;
+	y = r * cos(angle1) * cos_theta;
+	angle1 += 0.1f;
+	// Specify the point and move the Z value up a little
+	glVertex3f(x, y, z);
+}
+// Done drawing points
+glEnd();
+
+glFlush();
+glutSwapBuffers(); 
+}
+
+void keyboard(unsigned char key, int x, int y)
+{ switch (key) {
+case 'q':
+case 'Q':
+	exit(0);
+break; } 
+}
+void mouse(int btn, int state, int x, int y) { 
+
+	if (state == GLUT_DOWN) 
+{ if (btn == GLUT_LEFT_BUTTON)
+angle = angle + 1.0f;
+else if (btn == GLUT_RIGHT_BUTTON)
+angle = angle - 1.0f;
+else	angle = 0.0f; 
+} 
+}
+																		
+																		
+int main(int argc, char** argv) {
+
+		glutInit(&argc, argv);
+	glutInitWindowSize(500, 500);
+	glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE);
+	glutCreateWindow("Glut rotate");
+	glutMouseFunc(mouse);
+	glutKeyboardFunc(keyboard);
+	glutDisplayFunc(drawcube);
+	glutIdleFunc(drawcube);
+
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	glOrtho(-80.0, 80.0, -80.0, 80.0, -80.0, 80.0);
+	glRotatef(30.0, 1.0, 0.0, 0.0);     ///////////////x axis
+	glMatrixMode(GL_MODELVIEW);
+
+	glClearColor(0.0, 0.0, 0.0, 0.0);
+	glutMainLoop();
+
+	return(0); 
+
+}
+
+
+
+

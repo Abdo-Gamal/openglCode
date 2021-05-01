@@ -1,0 +1,64 @@
+#include <gl/glut.h>
+
+GLint  width;
+GLint hight;
+void RenderScene(void) {
+
+
+	glClear(GL_COLOR_BUFFER_BIT);
+
+
+
+	for (int i = 1; i < 4; i++) {
+		switch (i) {
+
+		case 1:
+		{
+			glViewport(0, 0, width / 2, hight / 2);
+			glColor3f(1.0f, 0.0f, 0.0f);
+			break;
+		}
+		case 2:
+		{
+			glViewport(0, hight / 2, width / 2, hight / 2);
+			glColor3f(0.0f, 1.0f, 0.0f);
+			break;
+		}
+		case 3:
+		{
+			glViewport(width / 2, hight / 2, width / 2, hight / 2);
+			glColor3f(1.0f, 1.0f, 0.0f);
+			break;
+		}
+		}
+		glRectf(-25.0f, 25.0f, 25.0f, -25.0f);
+	}
+
+	glFlush();
+}
+// Set up the rendering state
+void SetupRC(void) {
+	glClearColor(0.0f, 0.0f, 1.0f, 1.0f);
+
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	glOrtho(-100.0, 100.0, -100, 100.0, 1.0, -1.0);
+
+}
+// Called by GLUT library when the window has chanaged size
+void ChangeSize(GLsizei w, GLsizei h) {
+width=w;
+hight=h;
+}
+// Main program entry point
+int main(int argc, char* argv[])
+{
+	glutInit(&argc, argv);
+	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
+	glutCreateWindow("GLRect");
+	SetupRC();
+	glutDisplayFunc(RenderScene);
+	glutReshapeFunc(ChangeSize);
+	glutMainLoop();
+	return 0;
+}
